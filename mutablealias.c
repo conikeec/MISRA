@@ -9,7 +9,7 @@ typedef signed int SINT_32;
 typedef struct { int32_t tux; int32_t baz; int32_t bar; } example_s;
 
 /* Corrupts input. */
-static void black_box(example_s ** alias_to_alias)
+static void black_box1(example_s ** alias_to_alias)
 {
     if (alias_to_alias != NULL)
     {
@@ -30,7 +30,7 @@ SINT_32 main(void)
     int32_t return_value = alias->tux + alias->baz + alias->bar;
 
     /* Corrupts alias to data. */
-    black_box(alias_to_alias);
+    black_box1(alias_to_alias);
 
     /* All values must be used. */
     if ((return_value != 0) && (alias_to_alias != NULL))
